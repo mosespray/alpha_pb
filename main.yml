@@ -1,0 +1,210 @@
+---
+- name: Configure ansible host
+  hosts: alpha
+  become: True
+  roles:
+    - snmp
+    - guest-tools
+  tasks:
+    - name: Install EPEL release
+      yum: name=epel-release update_cache=yes
+
+    - name: Install ansible
+      yum: name=ansible update_cache=yes
+
+    - name: edit ansible config file
+      copy:
+        src: ansible.cfg
+        dest: /etc/ansible.cfg
+        force: yes
+
+    - name: Copy .bashrc file
+      copy:
+        src: bashrc
+        dest: /home/ansible/.bashrc
+        force: yes
+
+    - name: Copy .xoa file
+      copy:
+        src: xoa
+        dest: /home/ansible/.xoa
+        force: yes
+
+    - name: Create /etc/ansible/playbooks
+      ansible.builtin.file:
+        path: /etc/ansigle/playbooks
+        state: directory
+        mode: '0755'
+
+    - name: Clone /usr/local/bin
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/usr_local_bin.git
+        dest: /usr/local/bin
+        single_branch: yes
+        version: master
+
+    - name: Clone graylog_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/graylog_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone graylog_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/graylog_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone mail_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/mail_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone overlord_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/overlord_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone kdc_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/kdc_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone ftknox_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/ftknox_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone bbro_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/bbro_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone bacula_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/bacula_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+    - name: Clone bacula_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/bacula_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
+
+#    - name: Clone alpha_pb
+#      ansible.builtin.git:
+#        repo: https://github.com/mosespray/alpha_pb.git
+#        dest: /etc/ansible/playbooks
+#        single_branch: yes
+#        version: master
+
+    - name: Clone /etc/ansible
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/etc_ansible_files.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone Terraform role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/terraform_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone snmp role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/snmp_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone selinux_disabled_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/selinux_disabled_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone postfix
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/postfix_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone guest-tools_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/guest-tools_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone EPEL_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/EPEL_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone dovecot_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/dovecot_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone baculum_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/baculum_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+    - name: Clone roundcube_role
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/roundcube_role.git
+        dest: /etc/ansible/
+        single_branch: yes
+        version: master
+
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#    - name: Clone alpha_pb
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#- name: Install ansible galaxy mesaguy.prometheus package
+#  set_fact: ansible-galaxy install mesaguy.prometheus
+#
+#- name: Install ansible galaxy mesaguy.hashicorp package
+#  set_fact: ansible-galaxy install mesaguy.hashicorp
