@@ -106,12 +106,12 @@
         single_branch: yes
         version: master
 
-#    - name: Clone alpha_pb
-#      ansible.builtin.git:
-#        repo: https://github.com/mosespray/alpha_pb.git
-#        dest: /etc/ansible/playbooks
-#        single_branch: yes
-#        version: master
+    - name: Clone alpha_pb
+      ansible.builtin.git:
+        repo: https://github.com/mosespray/alpha_pb.git
+        dest: /etc/ansible/playbooks
+        single_branch: yes
+        version: master
 
     - name: Clone /etc/ansible
       ansible.builtin.git:
